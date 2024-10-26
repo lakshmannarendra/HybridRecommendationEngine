@@ -1,5 +1,4 @@
 
-```markdown
 # HybridRecommendationEngine
 
 A hybrid recommendation system combining multiple Content-Based Filtering and Collaborative Filtering techniques to provide personalized movie recommendations. Built with Python and leveraging the MovieLens dataset.
