@@ -1,8 +1,3 @@
-Understood! I'll update the README to include all the methods you implemented, correct the ratings scale, mention the separate notebooks for each method, and note that the results are specific to the dataset used and may vary with different datasets.
-
-Here's the revised README:
-
----
 
 ```markdown
 # HybridRecommendationEngine
