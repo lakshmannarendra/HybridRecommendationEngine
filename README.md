@@ -1,173 +1,233 @@
 
-# HybridRecommendationEngine
 
-A hybrid recommendation system combining multiple Content-Based Filtering and Collaborative Filtering techniques to provide personalized movie recommendations. Built with Python and leveraging the MovieLens dataset.
+---
 
-## Table of Contents
-- [Introduction](#introduction)
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Dataset](#dataset)
-- [Methodology](#methodology)
-  - [Content-Based Filtering](#content-based-filtering)
-  - [Collaborative Filtering](#collaborative-filtering)
-  - [Hybrid Approach](#hybrid-approach)
-- [Results](#results)
-- [Notes](#notes)
-- [License](#license)
-- [Authors](#authors)
+# 🎬 **Movie Recommendation Using Content-Based Filtering**
 
-## Introduction
+A **Content-Based Movie Recommendation System** that leverages multiple Natural Language Processing (NLP) techniques — **TF-IDF**, **Bag-of-Words**, and **BM25** — to generate personalized movie recommendations using the **MovieLens 25M** dataset.
+Developed with Python, this project demonstrates how textual features and metadata can be used to build efficient, scalable, and relevant movie recommendation systems.
 
-This project implements a hybrid recommendation system that combines multiple content-based and collaborative filtering methods to enhance the accuracy and personalization of movie recommendations.
+---
 
-## Features
+## 📚 **Table of Contents**
 
-- **Hybrid Recommendation Engine**: Integrates various Content-Based and Collaborative Filtering techniques.
-- **Advanced Text Processing**: Implements methods like TF-IDF, Bag-of-Words, BM25, and BERT for feature extraction.
-- **Multiple Collaborative Algorithms**: Includes both Singular Value Decomposition (SVD) and Neural Collaborative Filtering (NCF).
-- **Modular Structure**: Each method is implemented in separate Jupyter notebooks for clarity and ease of use.
-- **Scalable Architecture**: Designed to handle large datasets efficiently.
-- **Customizable**: Easy to extend or modify methods and parameters.
+* [Introduction](#introduction)
+* [Features](#features)
+* [Installation](#installation)
+* [Usage](#usage)
+* [Dataset](#dataset)
+* [Methodology](#methodology)
 
-## Installation
+  * [Data Preprocessing](#data-preprocessing)
+  * [Text Representation Techniques](#text-representation-techniques)
+
+    * [Bag-of-Words (BoW)](#bag-of-words-bow)
+    * [TF-IDF](#term-frequency-inverse-document-frequency-tf-idf)
+    * [BM25](#bm25)
+  * [Similarity Computation](#similarity-computation)
+* [Results](#results)
+* [Conclusion](#conclusion)
+* [Notes](#notes)
+* [License](#license)
+* [Author](#author)
+
+---
+
+## 🧠 **Introduction**
+
+With the exponential growth of streaming platforms, users face difficulty in discovering movies aligned with their interests.
+This project implements a **Content-Based Movie Recommendation Engine** that suggests movies similar to a given one using descriptive and metadata features such as **overview**, **genres**, **cast**, **crew**, and **keywords**.
+
+By employing advanced text representation techniques and similarity computations, the system provides **personalized and semantically relevant** movie recommendations — **without relying on explicit user ratings**.
+
+---
+
+## ⚙️ **Features**
+
+* 🎯 **Content-Based Filtering** using BoW, TF-IDF, and BM25
+* 🧹 **Text Preprocessing Pipeline** – tokenization, lemmatization, stopword removal, noise cleaning
+* 🎬 **Comprehensive Metadata Integration** – combines genres, overview, cast, crew, and production info
+* 🔍 **Cosine Similarity + KNN** – to retrieve top related movies
+* 🚀 **Scalable & Modular Design** – handles large datasets effectively
+* 📊 **Exploratory Visualizations** – genre distribution, release patterns, and ratings overview
+
+---
+
+## 💻 **Installation**
 
 1. **Clone the repository:**
+
    ```bash
-   git clone https://github.com/yourusername/HybridRecommendationEngine.git
+   git clone https://github.com/yourusername/MovieRecommendationSystem.git
+   cd MovieRecommendationSystem
    ```
-2. **Navigate to the project directory:**
-   ```bash
-   cd HybridRecommendationEngine
-   ```
-3. **Create and activate a virtual environment (optional but recommended):**
+
+2. **(Optional) Create and activate a virtual environment:**
+
    ```bash
    python -m venv venv
-   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
-4. **Install required packages:**
+
+3. **Install dependencies:**
+
    ```bash
    pip install -r requirements.txt
    ```
 
-## Usage
+---
 
-The project is organized into two main directories:
+## 🚀 **Usage**
 
-- **`Collaborative_Filtering`**
-- **`Content_Based_Filtering`**
+1. **Navigate to the project directory:**
 
-Each directory contains multiple Jupyter notebooks implementing different methods.
-
-### Collaborative Filtering
-
-- **Notebooks:**
-  - `SVD.ipynb`: Implements Singular Value Decomposition.
-  - `NCF.ipynb`: Implements Neural Collaborative Filtering.
-
-### Content-Based Filtering
-
-- **Notebooks:**
-  - `TF-IDF.ipynb`: Uses Term Frequency-Inverse Document Frequency.
-  - `BoW.ipynb`: Uses Bag-of-Words representation.
-  - `BM25.ipynb`: Implements Okapi BM25 algorithm.
-  - `BERT.ipynb`: Uses BERT embeddings for text data.
-
-### Running the Notebooks
-
-1. **Navigate to the desired directory:**
-
-   - For Collaborative Filtering:
-     ```bash
-     cd Collaborative_Filtering
-     ```
-   - For Content-Based Filtering:
-     ```bash
-     cd Content_Based_Filtering
-     ```
+   ```bash
+   cd Content_Based_Filtering
+   ```
 
 2. **Start Jupyter Notebook:**
+
    ```bash
    jupyter notebook
    ```
 
-3. **Open and Run the Notebooks:**
+3. **Open and run the notebooks:**
 
-   - In the Jupyter interface, you will see a list of notebooks (*.ipynb files).
-   - Select the notebook you want to explore (e.g., `SVD.ipynb`, `BM25.ipynb`, `NCF.ipynb`, `BERT.ipynb`).
-   - Run the notebook cells sequentially to execute the code and see the results.
+   * `BoW.ipynb`
+   * `TF-IDF.ipynb`
+   * `BM25.ipynb`
 
+Each notebook covers preprocessing, feature extraction, similarity computation, and generation of top movie recommendations.
 
+---
 
+## 🎞️ **Dataset**
 
+**Source:** [MovieLens 25M Dataset](https://grouplens.org/datasets/movielens/25m/)
 
-## Dataset
+* 🎥 **Movies:** 62,000+
+* ⭐ **Ratings:** 25 million
+* 🏷️ **Tags:** 1 million user-generated
+* 🧩 **Metadata:** Titles, genres, cast, crew, keywords, and overviews
+* 📅 **Time Span:** 1995–2019
 
-- **MovieLens 25M Dataset**: Contains 25 million ratings and one million tag applications applied to 62,000 movies by 162,000 users.
-  - **Ratings**: User ratings from **0** to **5**.
-  - **Tags**: User-generated tags for movies.
-  - **Movies Metadata**: Includes titles, genres, and other metadata.
+This dataset offers a rich combination of structured metadata and textual data, ideal for content-based analysis and NLP-based feature modeling.
 
-Download the dataset from [MovieLens](https://grouplens.org/datasets/movielens/25m/).
+---
 
-## Methodology
+## 🧩 **Methodology**
 
-### Content-Based Filtering
+### 🧼 **Data Preprocessing**
 
-Implemented multiple text processing techniques to capture the features of movies based on their descriptions and metadata.
+Steps involved:
 
-- **Bag-of-Words (BoW)**: Converts movie descriptions into numerical feature vectors based on word counts.
-- **TF-IDF**: Weighs the importance of words in the descriptions relative to their frequency across all movies.
-- **BM25**: An improved version of TF-IDF that considers term frequency saturation and document length normalization.
-- **BERT Embeddings**: Uses transformer-based models to capture contextual relationships in text, providing deep semantic understanding.
+1. **Data Loading & Cleaning:** Handling missing, duplicate, or inconsistent entries.
+2. **Integration:** Merged movie metadata, tags, and credits.
+3. **Feature Extraction:**
 
-### Collaborative Filtering
+   * Top 3 **cast members**
+   * Top 3 **crew members** (Director, Producer, Screenwriter)
+   * **Production companies**
+4. **Feature Engineering:**
 
-Implemented algorithms that leverage user-item interactions to predict user preferences.
+   * Combined extracted data into a unified **`movie_tags`** column (overview + metadata).
+5. **Text Preprocessing:**
 
-- **Singular Value Decomposition (SVD)**: Decomposes the user-item interaction matrix to identify latent factors influencing user preferences.
-- **Neural Collaborative Filtering (NCF)**: Utilizes deep neural networks to model complex user-item interaction patterns.
+   * Tokenization
+   * Lowercasing
+   * Lemmatization
+   * Stopword and noise removal
+   * Handling negations for better context preservation
 
-Each method is explored and implemented in separate Jupyter notebooks within the `Collaborative_Filtering` directory.
+---
 
-### Hybrid Approach
+### 🧮 **Text Representation Techniques**
 
-- **Integration of Methods**: Combines the strengths of both content-based and collaborative filtering methods.
-- **Aggregation of Scores**: Final recommendation scores are computed by appropriately weighting the outputs from different models.
-- **Flexibility**: The hybrid model can be adjusted to emphasize either content-based or collaborative aspects based on the application needs.
+#### 🧱 **Bag-of-Words (BoW)**
 
-## Results
+* Represents movie descriptions as vectors of word frequencies.
+* **Pros:** Simple, explainable, and scalable.
+* **Cons:** Ignores word order and deeper context.
 
-- **Performance Metrics**: Evaluated using metrics such as RMSE.
-- **Findings**:
-  - **Content-Based Filtering**:
-    - **BM25** and **BERT embeddings** provided superior results in capturing the semantic meaning of movie descriptions.
-  - **Collaborative Filtering**:
-    - **SVD** effectively handled sparse data and captured latent user preferences.
-    - **NCF** provided improved performance by modeling non-linear interactions.
-  - **Hybrid Model**:
-    - The combination of **BM25/BERT** with **SVD/NCF** yielded the best overall performance.
-    - The hybrid approach provided more personalized and diverse recommendations.
-- **Dataset Dependency**:
-  - Results were optimized for the MovieLens 25M dataset.
-  - Performance may vary with different datasets due to variations in data sparsity, user behavior, and content richness.
+#### 📊 **Term Frequency–Inverse Document Frequency (TF-IDF)**
 
-## Notes
+* Enhances BoW by considering word importance across the corpus.
+* Highlights rare but meaningful terms that define a movie’s uniqueness.
+* Provides improved discrimination between movies compared to plain word counts.
 
-- **Dataset Specificity**: The effectiveness of the implemented methods is tied to the characteristics of the MovieLens dataset used.
-- **Generalization**: While the models performed well on this dataset, their performance may differ on other datasets. Users are encouraged to retrain and adjust the models when applying them to new data.
-- **Customization**: Parameters and model configurations can be tuned within the notebooks to explore different scenarios.
+#### ⚖️ **BM25**
 
-## License
+* A more advanced ranking algorithm building upon TF-IDF.
+* **Features:**
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+  * Term frequency saturation
+  * Document length normalization
+  * Tunable parameters *(k1, b)*
+* **Advantages:**
 
-## Authors
+  * Produces robust and contextually relevant results
+  * Handles varying document lengths efficiently
+  * Offers better ranking and relevance compared to BoW/TF-IDF
 
-- **Alluri Lakshman Narendra** - [GitHub](https://github.com/lakshmannarendra)
-  - Department of Computer Science, Indian Institute of Technology Dharwad
+---
 
+### 🔎 **Similarity Computation**
 
+After converting movie data into feature vectors:
 
+* **Cosine Similarity** measures the degree of closeness between movie vectors.
+* **K-Nearest Neighbors (KNN)** identifies the *top K most similar* movies to a given input.
 
+---
+
+## 🧾 **Results**
+
+Quantitative evaluation metrics (like accuracy or recall) are less meaningful for recommendations due to subjective user preferences.
+Instead, we performed **qualitative analysis** based on the **relevance and contextual similarity** of the generated results.
+
+**Key Observations:**
+
+* **BoW:** Provided quick, interpretable results but missed deeper semantic context.
+* **TF-IDF:** Improved distinctiveness of relevant matches.
+* **BM25:** Produced the most *semantically coherent* and *contextually accurate* recommendations.
+* **Example Output:** When querying *“The Dark Knight”*, the top recommendations included *“Batman Begins”*, *“Man of Steel”*, and *“The Dark Knight Rises”* — demonstrating strong thematic and cast relevance.
+
+---
+
+## 🧩 **Conclusion**
+
+This project showcases the effectiveness of **content-based recommendation systems** built on textual and metadata analysis.
+Among all tested methods, **BM25** consistently yielded the most **relevant and context-aware** results, proving ideal for real-world recommendation tasks.
+
+Future improvements may include:
+
+* Incorporating **semantic embeddings** (e.g., Word2Vec, Sentence Transformers)
+* Introducing **genre-weighted scoring** for personalization
+* Integrating a simple **web interface** for live recommendations
+
+---
+
+## 🧾 **Notes**
+
+* The quality of recommendations depends heavily on data preprocessing and metadata completeness.
+* **BM25** parameter tuning (`k1`, `b`) can further enhance retrieval performance.
+* The system architecture is **scalable and easily extensible** to other domains (books, music, etc.).
+
+---
+
+## ⚖️ **License**
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 👨‍💻 **Author**
+
+**Alluri Lakshman Narendra**
+Department of Computer Science,
+Indian Institute of Technology Dharwad
+
+📧 [220010002@iitdh.ac.in](mailto:220010002@iitdh.ac.in)
+🔗 [GitHub Profile](https://github.com/lakshmannarendra)
+
+---
